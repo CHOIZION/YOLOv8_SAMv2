@@ -9,6 +9,14 @@ yolo_model = YOLO('yolov8n.pt')  # YOLOv8 모델 로드 (v8n, v8s 등)
 # SAM 모델 로드
 sam_model = SAM("sam2_t.pt")
 
+# GPU 사용 여부를 로그로 출력
+if torch.cuda.is_available():
+    device = torch.device('cuda')
+    print("Using GPU:", torch.cuda.get_device_name(0))
+else:
+    device = torch.device('cpu')
+    print("Using CPU")
+
 # 비디오/카메라 입력 설정 (0이면 기본 카메라)
 cap = cv2.VideoCapture(0)
 
